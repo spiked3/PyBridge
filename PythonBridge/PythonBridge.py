@@ -35,18 +35,18 @@ def _find_getch():
     return _getch
 
 def on_connect(client, userdata, flags, rc):
-	print("Connected with result code " + str(rc))
+	print("Connected with result code " + str(rc) + "\r")
 	client.subscribe("robot1/Cmd/#")
 	
 def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
-    Serial.write(str(msg.payload) + "\n")
+    Serial.write(str(msg.payload) + "\r")
 
 def ReadSerial():
     while Serial.isOpen() and not Closing:
-        line = Serial.readline()
+        line = Serial.readline().strip()
         if line:
-            print "com->" + line.strip()
+            print("com->" + line + "\r")
             client.publish("robot1",bytearray(line))
 
 def OpenSerial():
