@@ -39,8 +39,8 @@ def on_connect(client, userdata, flags, rc):
 	client.subscribe("robot1/Cmd/#")
 	
 def on_message(client, userdata, msg):
-    print(msg.topic + " " + str(msg.payload))
-    Serial.write(str(msg.payload) + "\r")
+    print(msg.topic + " " + str(msg.payload).strip() +"\r")
+    Serial.write(str(msg.payload).strip() + "\n")
 
 def ReadSerial():
     while Serial.isOpen() and not Closing:
