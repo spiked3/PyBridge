@@ -35,7 +35,7 @@ def _find_getch():
     return _getch
 
 def on_connect(client, userdata, flags, rc):
-	print("Connected with result code " + str(rc) + "\r")
+	print("MQTT connected\r")
 	client.subscribe("robot1/Cmd/#")
 	
 def on_message(client, userdata, msg):
