@@ -1,10 +1,15 @@
 import paho.mqtt.client as mqtt
-import serial, time, json, os, inspect, re
+import serial, time, json, os, inspect, re, subprocess
 from threading import Thread
+from subprocess import Popen
+
 
 if os.name == "posix":
     try:
-        Serial = serial.Serial("/dev/ttyUSB0", 115200, timeout=0.1)	# *nix
+        try:
+             Serial = serial.Serial("/dev/ttyUSB0", 115200, timeout=0.1)	# *nix
+        except:
+            Serial = serial.Serial("/dev/ttyUSB1", 115200, timeout=0.1) 
     except:
         Serial = serial.Serial("/dev/ttyACM0", 115200, timeout=0.1)	# *pi
 else:
