@@ -1,0 +1,2 @@
+#avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -V -Uflash:w:PilotV3.hex:i
+ls PilotV3* -t | head -1 | tr '\n' ':'  | xargs -0 -I {} avrdude -v -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -V -Uflash:w:{}i
